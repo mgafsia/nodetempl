@@ -15,6 +15,5 @@ app.use(api);
 
 // Start
 app.listen(app.get('port'), () => {
-    console.log(`Node server started at port ${app.get('port')}`);
+	console.log(`Node server started at port ${app.get('port')}`);
 });
-
