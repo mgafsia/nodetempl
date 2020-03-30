@@ -9,9 +9,25 @@ app.set('port', (process.env.port || 3000));
 const cors = require('cors');
 app.use(cors());
 
+// body parser
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false}));
+
 // Apis
 const api = require('./api/v1/index');
 app.use(api);
+
+// mongoose - settings ans start connection
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/gmsusers', { userNewUrlParser: true});
+const connection = mongoose.connection;
+connection.on('error', (err) => {
+	console.log(`Connection to mongoDB field ${err.message}`);
+});
+connection.once('open', () => {
+	console.log('connected to MongoDB');
+});
 
 // If the http query is not found
 app.use((req, result) =>  {
