@@ -33,11 +33,11 @@ router.get('/api/v1/users/:userId', (req, res) => {
 		.then(users => {
 			res.status(200).json(users);
 		}).catch(err => {
-		res.status(500).json({
-			message: `can not find user with id ${userId}`,
-			err
+			res.status(500).json({
+				message: `can not find user with id ${userId}`,
+				err
+			});
 		});
-	});
 });
 // Get All users
 router.get('/api/v1/users', (req, res) => {
@@ -56,14 +56,14 @@ router.delete('/api/v1/users/:userId', (req, res) => {
 	const userId = req.params.userId;
 	console.log('userId ', userId);
 	UserSchema.remove({'userId': userId}).exec()
-		.then(resultOfRemove => {
+		.then(() => {
 			res.status(200).json({msg: `user with userId ${userId} has been removed`});
 		}).catch(err => {
-		res.status(500).json({
-			message: `can not find user with id ${userId}`,
-			err
+			res.status(500).json({
+				message: `can not find user with id ${userId}`,
+				err
+			});
 		});
-	});
 });
 
 // export the module
