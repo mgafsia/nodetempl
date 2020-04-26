@@ -20,7 +20,7 @@ app.use(api);
 
 // mongoose - settings ans start connection
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/gmsusers', { userNewUrlParser: true});
+mongoose.connect('mongodb://localhost:27017/gmsusers3');
 const connection = mongoose.connection;
 connection.on('error', (err) => {
 	console.log(`Connection to mongoDB field ${err.message}`);
